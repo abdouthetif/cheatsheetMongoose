@@ -1,6 +1,6 @@
 
 # Mongoose cheatsheet
-Ce cheatsheet de Mongoose a été réalisé grâce à ⭐__chatGPT__ ⭐
+Ce cheatsheet de Mongoose a été réalisé grâce à ⭐ __chatGPT__ ⭐
 
 ## Installer Mongoose:
 
