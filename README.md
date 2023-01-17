@@ -1,5 +1,6 @@
 
-# Mongoose cheatsheat
+# Mongoose cheatsheet
+Ce cheatsheet de Mongoose a été réalisé grâce à ⭐__chatGPT__ ⭐
 
 ## Installer Mongoose:
 
@@ -21,7 +22,7 @@ const mongoose = require('mongoose')
 
 ```
 const connectionString = "monLienDeConnexionMongoDB"
-mongoose.connect(URL, options)
+mongoose.connect(connectionString, options)
 ```
 
 ### Schéma et model
@@ -84,25 +85,25 @@ Comment.find({user: userId}).populate('user').then(data => {
 
 ### Méthodes mongoose
 
-__Model.find(query, callback)__ : cette méthode permet de trouver __plusieurs documents__ en utilisant une requête. La requête peut être utilisée pour filtrer les documents en fonction de certains critères.
+__`Model.find(query, callback)`__ : cette méthode permet de trouver __plusieurs documents__ en utilisant une requête. La requête peut être utilisée pour filtrer les documents en fonction de certains critères.
 
-__Model.findOne(query, callback)__ : cette méthode permet de trouver __un seul document__ en utilisant une requête. Elle est similaire à la méthode find(), mais ne renvoie qu'un seul document.
+__`Model.findOne(query, callback)`__ : cette méthode permet de trouver __un seul document__ en utilisant une requête. Elle est similaire à la méthode find(), mais ne renvoie qu'un seul document.
 
-__Model.findById(id, callback)__ : cette méthode permet de trouver __un document en utilisant son ID__. Elle est équivalente à Model.findOne({ _id: id }, callback).
+__`Model.findById(id, callback)`__ : cette méthode permet de trouver __un document en utilisant son ID__. Elle est équivalente à Model.findOne({ _id: id }, callback).
 
-__Model.findOneAndUpdate(query, update, options, callback)__ : cette méthode permet de __mettre à jour un document__ en utilisant une requête et de renvoyer le document mis à jour.
+__`Model.findOneAndUpdate(query, update, options, callback)`__ : cette méthode permet de __mettre à jour un document__ en utilisant une requête et de renvoyer le document mis à jour.
 
-__Model.findOneAndRemove(query, options, callback)__ : cette méthode permet de __supprimer un document__ en utilisant une requête et de renvoyer le document supprimé.
+__`Model.findOneAndRemove(query, options, callback)`__ : cette méthode permet de __supprimer un document__ en utilisant une requête et de renvoyer le document supprimé.
 
-__Model.update(query, update, options, callback)__ : cette méthode permet de __mettre à jour plusieurs documents__ en utilisant une requête.
+__`Model.update(query, update, options, callback)`__ : cette méthode permet de __mettre à jour plusieurs documents__ en utilisant une requête.
 
-__Model.remove(query, callback)__ : cette méthode permet de _supprimer plusieurs documents_ en utilisant une requête.
+__`Model.remove(query, callback)`__ : cette méthode permet de _supprimer plusieurs documents_ en utilisant une requête.
 
-__Model.count(query, callback)__ : cette méthode permet de __compter les documents__ qui correspondent à une requête.
+__`Model.count(query, callback)`__ : cette méthode permet de __compter les documents__ qui correspondent à une requête.
 
-__Model.findByIdAndUpdate(id, update, options, callback)__ : cette méthode permet de __mettre à jour un document en utilisant son ID__. Elle est équivalente à Model.findOneAndUpdate({ _id: id }, update, options, callback).
+__`Model.findByIdAndUpdate(id, update, options, callback)`__ : cette méthode permet de __mettre à jour un document en utilisant son ID__. Elle est équivalente à Model.findOneAndUpdate({ _id: id }, update, options, callback).
 
-__Model.findByIdAndRemove(id, options, callback)__ : cette méthode permet de __supprimer un document en utilisant son ID__. Elle est équivalente à Model.findOneAndRemove({ _id: id }, options, callback).
+__`Model.findByIdAndRemove(id, options, callback)`__ : cette méthode permet de __supprimer un document en utilisant son ID__. Elle est équivalente à Model.findOneAndRemove({ _id: id }, options, callback).
     
 
 --------------
