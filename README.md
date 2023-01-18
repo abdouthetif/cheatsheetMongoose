@@ -186,6 +186,220 @@ Exemple :
 ```
 
 --------------
+
+## Les différentes options lors de la définition d'un champ dans un schéma Mongoose
+
+__type__ : le type de données pour ce champ (exemples : String, Number, Date, Boolean, etc.).
+
+	const userSchema = mongoose.Schema({
+	  name: { type: String },
+	  age: { type: Number },
+	  isAdmin: { type: Boolean, default: false }
+	});
+
+__required__ : indique si ce champ est obligatoire ou non (valeur : true ou false).
+
+	const userSchema = mongoose.Schema({
+	  name: { type: String, required: true },
+	  email: { type: String, required: true }
+	});
+
+__unique__ : indique si la valeur de ce champ doit être unique pour chaque document (valeur : true ou false).
+
+	const userSchema = mongoose.Schema({
+	  username: { type: String, unique: true },
+	  email: { type: String, required: true, unique: true }
+	});
+
+__default__ : valeur par défaut pour ce champ si aucune valeur n'est fournie lors de la création d'un document.
+
+	const userSchema = mongoose.Schema({
+	  name: { type: String, default: 'John Doe' },
+	  age: { type: Number, default: 18 }
+	});
+
+__enum__ : liste des valeurs valides pour ce champ.
+
+	const userSchema = mongoose.Schema({
+	  status: { type: String, enum: ['active', 'inactive', 'pending'] }
+	});
+
+__min__ : valeur minimale autorisée pour les types numériques et les types de date.
+
+	const userSchema = mongoose.Schema({
+	  age: { type: Number, min: 18 }
+	});
+
+__max__ : valeur maximale autorisée pour les types numériques et les types de date.
+
+	const userSchema = mongoose.Schema({
+	  age: { type: Number, max: 65 }
+	});
+
+__match__ : expression régulière utilisée pour valider les valeurs de ce champ.
+
+	const userSchema = mongoose.Schema({
+	  phone: { type: String, match: /^\d{3}-\d{3}-\d{4}$/ }
+	});
+
+__trim__ : indique si les espaces en début et fin de la valeur de ce champ doivent être automatiquement supprimés (valeur : true ou false).
+
+	const userSchema = mongoose.Schema({
+	  name: { type: String, trim: true }
+	});
+
+
+__lowercase__ : indique si la valeur de ce champ doit être automatiquement convertie en minuscules (valeur : true ou false).
+
+	const userSchema = mongoose.Schema({
+		email: { type: String, lowercase: true }
+	});
+
+
+__uppercase__ : indique si la valeur de ce champ doit être automatiquement convertie en majuscules (valeur : true ou false).
+
+	const userSchema = mongoose.Schema({
+		country: { type: String, uppercase: true }
+	});
+
+__select__ : indique si le champ doit être inclus ou non dans les requêtes de sélection (valeur : true ou false).
+
+	const userSchema = mongoose.Schema({
+	  name: { type: String },
+	  age: { type: Number },
+	  email: { type: String, select: false }
+	});
+
+__get__ : définit une fonction qui est appelée lorsque le champ est demandé.
+
+	const userSchema = mongoose.Schema({
+	  name: { type: String },
+	  age: { type: Number },
+	  password: { type: String, select: false, get: (val) => '******' }
+	});
+
+__set__ : définit une fonction qui est appelée lorsque le champ est modifié.
+
+	const userSchema = mongoose.Schema({
+	  name: { type: String },
+	  age: { type: Number },
+	  password: { type: String, select: false, set: (val) => bcrypt.hashSync(val, 10) }
+	});
+
+__validate__ : définit une fonction de validation pour le champ.
+
+	const userSchema = mongoose.Schema({
+	  name: { type: String },
+	  age: { type: Number },
+	  email: { type: String, validate: (val) => validator.isEmail(val) }
+	});
+
+__alias__ : permet de définir un autre nom pour le champ.
+
+	const userSchema = mongoose.Schema({
+	  name: { type: String },
+	  age: { type: Number },
+	  emailAddress: { type: String, alias: 'email' }
+	});
+	
+__immutable__ : empêche le champ d'être modifié une fois qu'il a été défini pour la première fois.
+
+	const userSchema = mongoose.Schema({
+	  name: { type: String },
+	  age: { type: Number },
+	  email: { type: String, immutable: true }
+	});
+
+__sparse__ : indique que le champ peut avoir des valeurs manquantes (par défaut, Mongoose renvoie une erreur si un champ obligatoire est manquant)
+
+	const userSchema = mongoose.Schema({
+	  name: { type: String },
+	  age: { type: Number },
+	  email: { type: String, sparse: true }
+	});
+
+__text__ : indique que le champ est un champ de recherche de texte plein pour utiliser des fonctionnalités de recherche de texte plein
+
+	const userSchema = mongoose.Schema({
+	  name: { type: String },
+	  age: { type: Number },
+	  bio: { type: String, text: true }
+	});
+
+__unique__ : indique si le champ doit être unique pour tous les documents de la collection.
+
+	const userSchema = mongoose.Schema({
+	  name: { type: String },
+	  age: { type: Number, unique: true }
+	});
+
+__index__ : permet de créer un index sur le champ pour améliorer les performances des requêtes.
+
+	const userSchema = mongoose.Schema({
+	  name: { type: String },
+	  age: { type: Number },
+	  email: { type: String, index: true }
+	});
+
+__unique__ : indique si le champ doit être unique pour tous les documents de la collection.
+
+	const userSchema = mongoose.Schema({
+	  name: { type: String },
+	  age: { type: Number },
+	  email: { type: String, unique: true }
+	});
+
+__sparse__ : indique que le champ peut avoir des valeurs manquantes (par défaut, Mongoose renvoie une erreur si un champ obligatoire est manquant)
+
+	const userSchema = mongoose.Schema({
+	  name: { type: String },
+	  age: { type: Number },
+	  email: { type: String, sparse: true }
+	});
+
+__expires__ : définit un délai après lequel le document expirera et sera automatiquement supprimé.
+
+	const sessionSchema = mongoose.Schema({
+	  sessionId: { type: String },
+	  expires: { type: Date, expires: '1h' }
+	});
+	
+__autoIndex__ : indique si l'index doit être créé automatiquement pour ce champ (valeur : true ou false).
+
+	const userSchema = mongoose.Schema({
+	  name: { type: String },
+	  age: { type: Number },
+	  email: { type: String, autoIndex: false }
+	});
+
+__timestamps__ : ajoute automatiquement les champs "createdAt" et "updatedAt" pour les documents de ce schéma.
+
+	const userSchema = mongoose.Schema({
+	  name: { type: String },
+	  age: { type: Number },
+	  email: { type: String }
+	}, { timestamps: true });
+
+__strict__ : indique si le schéma doit être strict ou non (valeur : true ou false). Si le schéma est strict, tous les champs qui ne sont pas définis dans le schéma seront ignorés lors de la création ou de la mise à jour d'un document.
+
+	const userSchema = mongoose.Schema({
+	  name: { type: String },
+	  age: { type: Number },
+	  email: { type: String }
+	}, { strict: true });
+
+__useNestedStrict__ : indique si les champs imbriqués doivent être stricts ou non (valeur : true ou false)
+
+	const userSchema = mongoose.Schema({
+	  name: { type: String },
+	  age: { type: Number },
+	  address: {
+	    street: { type: String },
+	    city: { type: String }
+	  }
+	}, { useNestedStrict: true });
+
+--------------
     
 ## Les méthodes personnalisées
 
